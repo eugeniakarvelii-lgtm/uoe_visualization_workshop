@@ -65,7 +65,7 @@ Detailed setup instructions are provided in the setup guide (Pre-workshop_00_Set
 
 Please complete the setup guide before the session if possible:
 
-[Setup before the workshop](./00_Setup_Before_Workshop.md)
+[Setup before the workshop](./Pre_workshop_00_Setup.md)
 
 You will need:
 
@@ -105,7 +105,7 @@ The supplementary introduction provides extra background on:
 
 You can read this before or after the workshop:
 
-[Introduction to data visualisation](./03_Data_Visualisation_Intro.md)
+[Introduction to data visualisation](./Data_Visualisation_Introduction_A_resource.md)
 
 ## Session outline
 
