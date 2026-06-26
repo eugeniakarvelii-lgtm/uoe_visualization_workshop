@@ -352,7 +352,7 @@ During the workshop, you will:
 6. push your changes to your own GitHub repository;
 7. publish your own repository using GitHub Pages.
 
-We will guide the process in the session and additional written instructions if you need for following along [Part 2- publishing with GitHub Pages](./Part_02_Publishing_With_Github_Pages.md)
+We will guide the process in the session and additional written instructions if you need for following along [Part 2- publishing with GitHub Pages](./Part_03_Publishing_With_Github_Pages.md)
 
 ---
 
