@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Visualization</title>
+    <title>Visualisation</title>
 
     <!-- Leaflet CSS -->
     <link
@@ -183,7 +183,7 @@
             .append("path")
             .datum(timelineData)
             .attr("fill", "none")
-            .attr("stroke", "steelblue")
+            .attr("stroke", "orange")
             .attr("stroke-width", 2)
             .attr("d", line);
 
@@ -195,7 +195,7 @@
             .attr("cx", (d) => x(d.year))
             .attr("cy", (d) => y(d.count))
             .attr("r", 3)
-            .attr("fill", "steelblue");
+            .attr("fill", "orange");
 
             // add slider for the timeline
         })
