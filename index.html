@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Visualization</title>
+    <title>Hello</title>
 
     <!-- Leaflet CSS -->
     <link
@@ -59,29 +59,30 @@
 
   <body>
     <header>
-      <h1>Digital Humanities Visualization</h1>
+      <h1>Roger Jeffrey</h1>
       <p>D3.js + Leaflet starter project</p>
     </header>
 
     <main>
-
       <div id="map"></div>
 
       <div id="viz">
-        <h2>D3 Visualization</h2>
         <svg id="chart"></svg>
       </div>
     </main>
 
     <script>
-      // add commented code for changing color/size/width etc. 
+      // add commented code for changing color/size/width etc.
       // attach the leaflet map to the div with id "map"
       const map = L.map("map").setView([55.9533, -3.1883], 5);
 
       // add tiles/images to the map
-      L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        attribution: "&copy; OpenStreetMap contributors",
-      }).addTo(map);
+      L.tileLayer(
+        "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
+        {
+          attribution: "&copy; OpenStreetMap contributors",
+        },
+      ).addTo(map);
 
       // attach d3 to the asvg element where you are going to draw the visualization
       const svg = d3.select("#chart");
@@ -97,9 +98,26 @@
       // load the data
       d3.json("data/women_doctors_geo.json")
         .then((data) => {
-
           console.log(data);
-          
+
+          // // OPTIONAL ENTRY YEAR FILTER
+          // // Comment out this whole block if you want to disable year-based filtering.
+          // const ENABLE_ENTRY_YEAR_FILTER = true;
+          // const ENTRY_YEAR_MIN = 1910;
+          // const ENTRY_YEAR_MAX = 1950;
+
+          // let filteredData = data;
+          // if (ENABLE_ENTRY_YEAR_FILTER) {
+          //   filteredData = data.filter((d) => {
+          //     const year = Number(d.source_data?.entry_year);
+          //     return (
+          //       Number.isFinite(year) &&
+          //       year >= ENTRY_YEAR_MIN &&
+          //       year <= ENTRY_YEAR_MAX
+          //     );
+          //   });
+          // }
+
           // MAP
           // go through every record in the data and add a marker to the map for each birthplace
           data.forEach((element) => {
@@ -112,7 +130,7 @@
                 element.source_data.birthplace.lon,
               ])
                 .addTo(map)
-                .bindPopup("University of Edinburgh");
+                .bindPopup(element.name.forename + " " + element.name.surname);
             }
           });
 
@@ -132,6 +150,14 @@
             .map(([year, count]) => ({ year, count }))
             .sort((a, b) => a.year - b.year);
 
+          console.log(timelineData);
+          
+
+          // if (timelineData.length === 0) {
+          //   console.warn("No data points after applying entry_year filter.");
+          //   return;
+          // }
+
           // x axis
           const x = d3
             .scaleLinear()
@@ -145,6 +171,9 @@
             .domain([0, d3.max(timelineData, (d) => d.count)])
             // .nice()
             .range([height - margin.bottom, margin.top]);
+
+          let test = x(1910);
+          console.log(test);
 
           // append both axes to the svg
           svg
@@ -187,17 +216,16 @@
             .attr("stroke-width", 2)
             .attr("d", line);
 
-          svg
-            .selectAll(".point")
-            .data(timelineData)
-            .join("circle")
-            .attr("class", "point")
-            .attr("cx", (d) => x(d.year))
-            .attr("cy", (d) => y(d.count))
-            .attr("r", 3)
-            .attr("fill", "steelblue");
+          // svg
+          //   .selectAll(".point")
+          //   .data(timelineData)
+          //   .join("circle")
+          //   .attr("class", "point")
+          //   .attr("cx", (d) => x(d.year))
+          //   .attr("cy", (d) => y(d.count))
+          //   .attr("r", 3)
+          //   .attr("fill", "steelblue");
 
-            // add slider for the timeline
         })
         .catch((error) => {
           console.error("Error loading JSON:", error);
